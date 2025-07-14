@@ -390,9 +390,9 @@
                 min-width: 0; /* 내용이 넘칠 때 축소 허용 */
             }
             .modal-body li .text-content {
-                overflow: hidden; /* 넘치는 텍스트 숨김 */
-                white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-                text-overflow: ellipsis; /* 넘치는 텍스트 ... 처리 */
+                overflow: visible; /* 기본값으로 변경 */
+                white-space: normal; /* 텍스트 줄바꿈 허용 */
+                text-overflow: clip; /* 기본값으로 변경 */
             }
             .modal-body li div {
                 margin-right: 0;
@@ -481,6 +481,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryDetailTitle = document.getElementById('category-detail-title');
         const categoryDetailList = document.getElementById('category-detail-list');
 
+        function lockBodyScroll() {
+            document.body.style.overflow = 'hidden';
+        }
+
+        function unlockBodyScroll() {
+            document.body.style.overflow = '';
+        }
+
         function findTool(categoryName, toolName) {
             const category = aiToolsData[categoryName];
             if (!category) return null;
@@ -537,6 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalDescription.textContent = tool.description;
             modalLink.href = tool.url;
             toolDetailModal.style.display = 'flex';
+            lockBodyScroll();
         }
 
         function openCategoryDetailModal(categoryName) {
@@ -560,6 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             categoryDetailModal.style.display = 'flex';
+            lockBodyScroll();
         }
 
         function loadAllData() {
@@ -644,19 +654,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target.classList.contains('close-button')) {
                 const modalId = target.dataset.modalId;
                 document.getElementById(modalId).style.display = 'none';
+                unlockBodyScroll();
                 return;
             }
 
             if (target.classList.contains('modal-container')) {
                 target.style.display = 'none';
+                unlockBodyScroll();
                 return;
             }
         });
 
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
-                toolDetailModal.style.display = 'none';
-                categoryDetailModal.style.display = 'none';
+                if (toolDetailModal.style.display !== 'none' || categoryDetailModal.style.display !== 'none') {
+                    toolDetailModal.style.display = 'none';
+                    categoryDetailModal.style.display = 'none';
+                    unlockBodyScroll();
+                }
             }
         });
 

@@ -51,9 +51,14 @@ const aiSitesData = {
             "description": "공감 능력이 뛰어나고 친근한 대화를 나누는 데 특화된 개인용 AI 챗봇입니다."
         },
         {
-            "name": "chatgpt3",
-            "url": "www.dfdfd",
-            "description": "dfasdfasdfasdfasdfasdf"
+            "name": "DeepSeek",
+            "url": "https://www.deepseek.com/",
+            "description": "코드 생성에 특화된 고성능 오픈소스 대규모 언어 모델(LLM)과 관련 API를 제공하는 AI 플랫폼입니다."
+        },
+        {
+            "name": "Monica",
+            "url": "https://monica.im/",
+            "description": "최첨단 AI 모델을 탑재하여 채팅, 검색, 글쓰기, 번역 등 다양한 작업을 하나의 브라우저 확장 프로그램으로 해결해주는 올인원 AI 비서입니다."
         }
     ],
     "✍️ 글쓰기, 요약, 번역": [
@@ -131,6 +136,11 @@ const aiSitesData = {
             "name": "Humata AI",
             "url": "https://www.humata.ai/",
             "description": "복잡한 기술 문서나 여러 개의 논문을 한번에 분석하고, 요약 및 비교 질문에 답해줍니다."
+        },
+        {
+            "name": "ZeroGPT",
+            "url": "https://www.zerogpt.com/",
+            "description": "AI가 생성한 텍스트를 감지하고, 표절 여부를 확인하며, 문법 교정, 단어 수 계산 등 다양한 글쓰기 작업을 도와주는 AI 텍스트 분석 도구입니다."
         }
     ],
     "🎨 이미지 생성": [
@@ -208,6 +218,16 @@ const aiSitesData = {
             "name": "Lexica Art",
             "url": "https://lexica.art/",
             "description": "Stable Diffusion으로 생성된 수백만 개의 이미지를 탐색하고, 직접 생성할 수도 있는 갤러리 겸 생성기입니다."
+        },
+        {
+            "name": "PixAI",
+            "url": "https://pixai.art/",
+            "description": "애니메이션 스타일에 특화된 AI 아트 생성기로, 다양한 모델과 학습 도구를 통해 사용자가 직접 원하는 그림을 만들고 공유하는 플랫폼입니다."
+        },
+        {
+            "name": "123RF",
+            "url": "https://kr.123rf.com/",
+            "description": "사진, 일러스트, 영상, 음원 등 수백만 개의 고품질 디지털 콘텐츠를 필요에 따라 구매하거나 구독하여 사용할 수 있는 글로벌 로열티 프리 스톡 콘텐츠 플랫폼입니다."
         }
     ],
     "✨ 이미지 편집 & 향상": [
@@ -260,6 +280,21 @@ const aiSitesData = {
             "name": "WatermarkRemover.io",
             "url": "https://www.watermarkremover.io/",
             "description": "이미지에서 워터마크를 감쪽같이 제거해주는 AI 서비스입니다."
+        },
+        {
+            "name": "Miri Canvas",
+            "url": "https://www.miricanvas.com/",
+            "description": "템플릿, AI 기능, 다양한 디자인 소스를 활용하여 비전문가도 PPT, 카드뉴스, 인쇄물 등을 손쉽게 만들 수 있는 웹 기반의 무료 디자인 플랫폼입니다."
+        },
+        {
+            "name": "Cutout",
+            "url": "https://www.cutout.pro/",
+            "description": "AI 기술로 이미지 배경 제거, 화질 개선, 불필요한 개체 삭제 등 다양한 사진 및 동영상 편집 기능을 자동화하여 제공하는 올인원 비주얼 디자인 플랫폼입니다."
+        },
+        {
+            "name": "PIXLR",
+            "url": "https://pixlr.com/kr",
+            "description": "소프트웨어 설치 없이 웹에서 바로 사용할 수 있는 AI 기반의 무료 사진 편집 및 디자인 도구입니다."
         }
     ],
     "🎬 영상 생성 & 편집": [
@@ -332,6 +367,11 @@ const aiSitesData = {
             "name": "Gling",
             "url": "https://gling.ai/",
             "description": "유튜버를 위한 AI로, 영상에서 불필요한 침묵이나 실수 구간을 자동으로 잘라내 줍니다."
+        },
+        {
+            "name": "Media AI",
+            "url": "https://www.media.io/ai/home",
+            "description": "비디오, 이미지, 오디오 등 다양한 미디어 파일을 위한 AI 기반 편집 및 변환 도구를 온라인으로 제공하는 무료 올인원(All-in-one) 플랫폼입니다."
         }
     ],
     "👤 아바타 & 디지털 휴먼": [
@@ -421,6 +461,11 @@ const aiSitesData = {
             "name": "Podcastle",
             "url": "https://podcastle.ai/",
             "description": "팟캐스트 녹음, 편집, AI 음성 생성, 노이즈 제거 등을 지원하는 올인원 플랫폼입니다."
+        },
+        {
+            "name": "Clipto.AI",
+            "url": "https://www.clipto.com/",
+            "description": "콘텐츠 제작자를 위해 동영상, 팟캐스트 등 다양한 미디어를 자동으로 관리하고 검색할 수 있게 도와주는 비공개 AI 비서 서비스입니다."
         }
     ],
     "📄 디자인, 문서, PPT": [
@@ -473,6 +518,11 @@ const aiSitesData = {
             "name": "Khroma",
             "url": "https://www.khroma.co/",
             "description": "사용자가 선호하는 색상을 학습하여 수천 가지의 AI 생성 색상 조합을 제안해주는 도구입니다."
+        },
+        {
+            "name": "Pixelcut",
+            "url": "https://www.pixelcut.ai/",
+            "description": "AI를 활용해 누구나 쉽게 제품 사진, 포스터, 프로필 사진 등 전문가 수준의 이미지를 만들 수 있도록 돕는 올인원 비주얼 편집 플랫폼입니다."
         }
     ],
     "🚀 생산성 & 자동화": [
@@ -691,6 +741,60 @@ const aiSitesData = {
             "name": "Papers with Code",
             "url": "https://paperswithcode.com/",
             "description": "최신 머신러닝 논문과 해당 논문을 구현한 코드를 함께 볼 수 있는 사이트입니다."
+        },
+        {
+            "name": "Lovable",
+            "url": "https://lovable.dev/",
+            "description": "AI와의 채팅을 통해 코딩 지식 없이도 앱과 웹사이트를 만들 수 있도록 도와주는 AI 기반 개발 도우미입니다."
+        }
+    ],
+    "⌨️ AI 채팅": [
+        {
+            "name": "janutorai",
+            "url": "https://janitorai.com/",
+            "description": "사용자가 원하는 다양한 페르소나의 AI 캐릭터와 자유롭게 대화하며 역할극과 스토리텔링을 즐길 수 있는 AI 챗봇 플랫폼입니다."
+        },
+        {
+            "name": "SPICYCHAT",
+            "url": "https://spicychat.ai/",
+            "description": "다양한 AI 캐릭터와 제한 없는 자유로운 채팅을 즐길 수 있는 AI 롤플레잉 챗봇 플랫폼입니다."
+        }
+    ],
+    "⚪ 3D": [
+        {
+            "name": "Meshy",
+            "url": "https://www.meshy.ai/",
+            "description": "텍스트나 이미지를 입력하면 AI가 3D 모델과 텍스처, 애니메이션까지 자동으로 생성해 주는 올인원 3D 콘텐츠 제작 플랫폼입니다."
+        },
+        {
+            "name": "3daistudio",
+            "url": "https://www.3daistudio.com/",
+            "description": "텍스트나 이미지를 입력하면 몇 초 만에 고품질 3D 모델로 변환해주는 AI 기반 3D 콘텐츠 생성 플랫폼입니다."
+        },
+        {
+            "name": "SCOUT",
+            "url": "https://scout.asseter.ai/",
+            "description": "이미지나 스케치를 업로드하면 AI가 여러 3D 스톡 마켓플레이스에서 가장 유사한 3D 모델을 찾아주는 이미지 기반 3D 모델 검색 엔진입니다."
+        },
+        {
+            "name": "TRIPO",
+            "url": "https://www.tripo3d.ai/",
+            "description": "텍스트나 이미지를 입력하면 AI가 몇 초 만에 고품질 3D 모델로 자동 변환해주는 서비스입니다."
+        },
+        {
+            "name": "HYPER3D",
+            "url": "https://hyper3d.ai/",
+            "description": "텍스트나 이미지를 입력하면 AI가 고품질 3D 모델, 텍스처, HDRI 파노라마 등을 자동으로 생성해주는 올인원 3D 콘텐츠 제작 플랫폼입니다."
+        },
+        {
+            "name": "D5 RENDER",
+            "url": "https://www.d5render.com/ko",
+            "description": "건축, 인테리어, 조경 등 다양한 분야의 디자이너를 위해 개발된 실시간 렌더링 소프트웨어입니다."
+        },
+        {
+            "name": "ReRender",
+            "url": "https://ko.rerenderai.com/",
+            "description": "인테리어 디자이너, 건축가, 3D 아티스트를 위해 스케치나 3D 모델을 몇 초 만에 사실적인 고품질 렌더링 이미지로 변환해주는 AI 기반 건축 시각화 도구입니다."
         }
     ]
 };
