@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 서비스 총망라 | 최종 확장판</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+        /* --- Pretendard 폰트 설정 --- */
+        body, button, input, textarea {
+            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        }
+
+        /* --- 디자인 시스템: 변수 정의 --- */
+        :root {
+            --primary-color: #5A67D8; /* 차분하고 고급스러운 보라색 계열 */
+            --primary-dark-color: #434190; /* 호버/클릭 시 사용 */
+            --bg-color: #F0F2F5; /* 은은한 회색 배경 */
+            --card-bg-color: #FFFFFF;
+            --text-color: #2D3748; /* 진한 텍스트 색상 */
+            --subtle-text-color: #718096; /* 보조 텍스트 */
+            --border-color: #E2E8F0; /* 부드러운 경계선 */
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --rank1-color: #FFD700; /* Gold */
+            --rank2-color: #C0C0C0; /* Silver */
+            --rank3-color: #CD7F32; /* Bronze */
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px; /* 약간 더 부드러운 모서리 */
+        }
+
+        /* --- 기본 스타일 및 레이아웃 --- */
+        html { scroll-behavior: smooth; }
+        html, body {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6; /* 가독성 향상 */
+        }
+        .ai-collection-container {
+            max-width: 1400px; /* 최대 너비 조정 */
+            margin: 0 auto;
+            padding: 3rem; /* 패딩 조정 */
+        }
+
+        /* --- 헤더 및 타이틀 --- */
+        .page-header {
+            text-align: center;
+            margin-bottom: 5rem; /* 마진 조정 */
+            padding: 2.5rem 0; /* 패딩 조정 */
+        }
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-color);
+            margin: 0 0 0.75rem 0;
+            letter-spacing: -0.05em;
+        }
+        .page-subtitle {
+            font-size: 1.25rem;
+            color: var(--subtle-text-color);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* --- 카드 그리드 --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 카드 최소 너비 증가 */
+            gap: 1.5rem; /* 간격 증가 */
+        }
+
+        /* --- 카테고리 카드 --- */
+        .category-card {
+            background-color: var(--card-bg-color);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        .category-card:hover {
+            transform: translateY(-10px); /* 호버 효과 강화 */
+            box-shadow: var(--shadow-lg);
+        }
+        .category-card header {
+            padding: 1.8rem; /* 패딩 증가 */
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer; /* 명시적으로 커서 포인터 설정 */
+        }
+        .category-card header:hover {
+            background-color: #F9FAFB;
+        }
+        .category-card h2 {
+            margin: 0;
+            font-size: 1.5rem; /* 폰트 크기 증가 */
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        .view-all-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            width: 100%; /* 버튼 너비 100%로 설정 */
+            box-sizing: border-box; /* 패딩, 보더 포함 너비 계산 */
+        }
+        .view-all-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* --- 순위 목록 --- */
+        .ranked-list {
+            list-style: none;
+            padding: 1rem 1.5rem;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .ranked-list li {
+            padding: 0.85rem 0;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .ranked-list li:last-child { border-bottom: none; }
+
+        .rank-badge {
+            background-color: var(--subtle-text-color);
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative; /* 아이콘 위치 조정을 위해 추가 */
+        }
+        .rank-badge i {
+            font-size: 0.9em; /* 아이콘 크기 조정 */
+        }
+        .rank-badge.rank-1 { background-color: var(--rank1-color); }
+        .rank-badge.rank-2 { background-color: var(--rank2-color); }
+        .rank-badge.rank-3 { background-color: var(--rank3-color); }
+
+        .tool-name-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 1;
+        }
+        .tool-name-link:hover { color: var(--primary-color); }
+
+        /* --- 카드 확장 (아코디언) --- */
+        .ranked-list.collapsed {
+            max-height: 215px; /* 5개 아이템 높이 근사치 */
+            overflow: hidden;
+            position: relative;
+        }
+        .ranked-list.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to top, var(--card-bg-color), transparent);
+        }
+        .card-footer {
+            padding: 0.75rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .expand-btn {
+            background: none; border: none; cursor: pointer;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .expand-btn:hover { text-decoration: underline; }
+
+        /* --- 모달 --- */
+        .modal-container {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* 다시 반투명 배경 */
+            align-items: center;
+            justify-content: center;
+            /* padding: 1rem; */ /* 패딩 제거 */
+            backdrop-filter: blur(8px); /* 블러 필터 활성화 */
+        }
+        .modal-content {
+            background-color: var(--card-bg-color);
+            padding: 2.5rem; /* PC에서 패딩 조정 */
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            width: 100%; /* 너비를 100%로 설정 */
+            max-width: 700px; /* 모달 너비 증가 */
+            animation: fadeIn 0.3s ease-out;
+            border: 1px solid var(--border-color);
+            box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+            opacity: 1; /* 불투명도 강제 */
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.8rem; /* 패딩 조정 */
+            margin-bottom: 1.8rem; /* 마진 조정 */
+            border-bottom: 1px solid var(--border-color);
+        }
+        .modal-title { margin: 0; font-size: 2rem; font-weight: 700; }
+        .close-button {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            color: #9CA3AF;
+            font-size: 2rem;
+            background: none; border: none; cursor: pointer;
+            width: 40px; height: 40px; line-height: 40px; text-align: center;
+            border-radius: 50%;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .close-button:hover { background-color: #F3F4F6; color: #1F2937; }
+
+        /* 카테고리 모달 리스트 */
+        .modal-body ul {
+            list-style: none; padding: 0; /* 패딩 제거 */
+            max-height: 70vh; overflow-y: auto; /* 최대 높이 조정 */
+        }
+        .modal-body li {
+            padding: 1.2rem 1.5rem; /* 패딩 조정 */
+            border-radius: var(--border-radius-md);
+            transition: background-color 0.2s;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            flex-wrap: nowrap; /* 내용이 길어질 경우 줄바꿈 방지 */
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem; /* 간격 조정 */
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow); /* 그림자 추가 */
+        }
+        .modal-body li:last-child { margin-bottom: 0; }
+        .modal-body li:hover { background-color: #F3F4F6; }
+        .modal-body li .site-info {
+            display: flex;
+            align-items: center;
+            flex-grow: 1; /* 공간을 최대한 차지하도록 */
+            flex-shrink: 1; /* 필요시 축소 허용 */
+            margin-right: 1.5rem; /* 간격 줄임 */
+            min-width: 0; /* flex 아이템이 내용에 따라 축소될 수 있도록 */
+        }
+        .site-favicon {
+            width: 36px; /* 아이콘 크기 조정 */
+            height: 36px;
+            margin-right: 1.2rem; /* 아이콘과 텍스트 사이 간격 */
+            flex-shrink: 0; /* 축소되지 않도록 */
+        }
+        .modal-body li .text-content {
+            flex-grow: 1;
+            flex-shrink: 1; /* 필요시 축소 허용 */
+            overflow: hidden; /* 넘치는 내용 숨김 */
+        }
+        .modal-body li strong {
+            display: block;
+            font-size: 1.25rem; /* 폰트 크기 조정 */
+            color: var(--text-color);
+            margin-bottom: 0.4rem; /* 간격 조정 */
+        }
+        .modal-body li p {
+            font-size: 1rem; /* 폰트 크기 조정 */
+            color: var(--subtle-text-color);
+            margin: 0;
+            line-height: 1.5; /* 줄 간격 조정 */
+        }
+        .modal-body li .go-to-site-btn {
+            flex-shrink: 0;
+            padding: 0.6rem 1.2rem; /* Adjusted padding to match view-all-btn */
+            font-size: 0.95rem; /* Adjusted font size to match view-all-btn */
+            background-color: transparent; /* Match view-all-btn */
+            color: var(--primary-color); /* Match view-all-btn */
+            border: 2px solid var(--primary-color); /* Match view-all-btn */
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            white-space: nowrap;
+            box-shadow: none; /* Remove shadow for consistency */
+        }
+        .modal-body li .go-to-site-btn:hover {
+            background-color: var(--primary-color); /* Match view-all-btn */
+            color: white; /* Match view-all-btn */
+            transform: translateY(-2px); /* Match view-all-btn */
+            box-shadow: var(--shadow-md); /* Match view-all-btn */
+        }
+
+        /* 툴 상세 모달 */
+        .tool-detail-body { text-align: center; }
+        .tool-logo {
+            width: 72px; height: 72px;
+            border-radius: var(--border-radius-md);
+            margin: 0 auto 1.25rem auto;
+            border: 1px solid var(--border-color);
+            object-fit: contain;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        #tool-detail-description {
+            font-size: 1rem;
+            margin: 0 auto 1.75rem auto;
+            color: var(--subtle-text-color);
+            line-height: 1.6;
+        }
+        .go-to-site-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .go-to-site-btn:hover { background-color: var(--primary-dark-color); }
+
+        /* --- 반응형 디자인 --- */
+        @media screen and (max-width: 1024px) {
+            .ai-collection-container { padding: 2rem; }
+            .page-title { font-size: 3rem; }
+            .page-subtitle { font-size: 1.15rem; }
+            .grid-container { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        }
+
+        @media screen and (max-width: 768px) {
+            .ai-collection-container { padding: 0.5rem; }
+            .page-title { font-size: 1.8rem; }
+            .page-subtitle { font-size: 0.8rem; }
+            .grid-container { grid-template-columns: 1fr; gap: 0.5rem; }
+            .modal-content { padding: 0.8rem; width: 90vw; /* 뷰포트 너비의 90% */ max-width: 400px; /* 더 넓은 최대 너비 */ }
+            .modal-title { font-size: 1.2rem; }
+            .tool-logo { width: 48px; height: 48px; }
+            #tool-detail-description { font-size: 0.85rem; }
+            .go-to-site-btn { padding: 0.5rem 1rem; }
+            .modal-body li {
+                flex-direction: row; /* 가로 정렬 유지 */
+                align-items: center;
+                padding: 0.75rem 1rem; /* 패딩 조정 */
+                flex-wrap: nowrap; /* 줄바꿈 방지 */
+            }
+            .modal-body li .site-info {
+                flex-grow: 1;
+                margin-right: 0.5rem; /* 간격 줄임 */
+                min-width: 0; /* 내용이 넘칠 때 축소 허용 */
+            }
+            .modal-body li .text-content {
+                overflow: hidden; /* 넘치는 텍스트 숨김 */
+                white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+                text-overflow: ellipsis; /* 넘치는 텍스트 ... 처리 */
+            }
+            .modal-body li div {
+                margin-right: 0;
+                margin-bottom: 0;
+            }
+            .modal-body li .go-to-site-btn {
+                width: auto; /* 너비 자동 */
+                text-align: center;
+                padding: 0.5rem 1rem; /* 버튼 패딩 조정 */
+                margin-top: 0; /* 마진 제거 */
+            }
+            .site-favicon {
+                width: 28px; /* 아이콘 크기 유지 */
+                height: 28px;
+                margin-right: 0.75rem;
+            }
+            .modal-body li strong {
+                font-size: 1.1rem; /* 폰트 크기 유지 */
+            }
+            .modal-body li p {
+                font-size: 0.9rem; /* 폰트 크기 유지 */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .ai-collection-container { padding: 1rem; }
+            .page-title { font-size: 2rem; }
+            .page-subtitle { font-size: 0.9rem; }
+            .category-card header { padding: 1.25rem; }
+            .category-card h2 { font-size: 1.2rem; }
+            .ranked-list { padding: 0.75rem 1.25rem; }
+            .ranked-list li { padding: 0.65rem 0; }
+            .rank-badge { width: 24px; height: 24px; font-size: 0.8rem; }
+            .modal-content { padding: 1.5rem; }
+            .modal-title { font-size: 1.3rem; }
+            .close-button { font-size: 1.6rem; width: 30px; height: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ai-collection-container">
+    <header class="page-header">
+        <h1 class="page-title">AI 사이트 모음</h1>
+        <p class="page-subtitle">세상의 모든 AI 서비스를 한눈에. 당신의 작업을 도와줄 최고의 AI 툴을 찾아보세요.</p>
+    </header>
+
+    <main class="grid-container" id="grid-container"></main>
+
+    <!-- Tool Detail Modal -->
+    <div id="tool-detail-modal" class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="tool-detail-title" class="modal-title"></h2>
+                <span class="close-button" data-modal-id="tool-detail-modal">&times;</span>
+            </div>
+            <div class="modal-body tool-detail-body">
+                <img id="tool-detail-logo" src="" alt="Tool Logo" class="tool-logo">
+                <p id="tool-detail-description"></p>
+                <a id="tool-detail-link" href="#" target="_blank" rel="noopener noreferrer" class="go-to-site-btn">사이트 바로가기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Detail Modal -->
+    <div id="category-detail-modal" class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="category-detail-title" class="modal-title"></h2>
+                <span class="close-button" data-modal-id="category-detail-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <ul id="category-detail-list"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="ai_sites.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    function initialize(aiToolsData) {
+        const mainContainer = document.getElementById('grid-container');
+        const toolDetailModal = document.getElementById('tool-detail-modal');
+        const categoryDetailModal = document.getElementById('category-detail-modal');
+        const categoryDetailTitle = document.getElementById('category-detail-title');
+        const categoryDetailList = document.getElementById('category-detail-list');
+
+        function findTool(categoryName, toolName) {
+            const category = aiToolsData[categoryName];
+            if (!category) return null;
+            return category.find(tool => tool.name === toolName);
+        }
+
+        function createToolListItem(tool, categoryName, rank) {
+            const li = document.createElement('li');
+
+            const rankBadge = document.createElement('span');
+            rankBadge.className = 'rank-badge';
+            let iconClass = '';
+            if (rank === 1) {
+                iconClass = 'fa-solid fa-trophy';
+                rankBadge.classList.add('rank-1');
+            } else if (rank === 2) {
+                iconClass = 'fa-solid fa-medal';
+                rankBadge.classList.add('rank-2');
+            } else if (rank === 3) {
+                iconClass = 'fa-solid fa-award';
+                rankBadge.classList.add('rank-3');
+            } else {
+                iconClass = 'fa-solid fa-circle'; // Default icon for others
+                rankBadge.textContent = rank; // Still show number for others
+            }
+            if (iconClass) {
+                const icon = document.createElement('i');
+                icon.className = iconClass;
+                rankBadge.appendChild(icon);
+            }
+
+            const toolLink = document.createElement('a');
+            toolLink.className = 'tool-name-link';
+            toolLink.textContent = tool.name;
+            toolLink.dataset.toolName = tool.name;
+            toolLink.dataset.categoryName = categoryName;
+
+            li.appendChild(rankBadge);
+            li.appendChild(toolLink);
+            
+            return li;
+        }
+
+        function openToolDetailModal(tool) {
+            const modalTitle = document.getElementById('tool-detail-title');
+            const modalLogo = document.getElementById('tool-detail-logo');
+            const modalDescription = document.getElementById('tool-detail-description');
+            const modalLink = document.getElementById('tool-detail-link');
+            modalTitle.textContent = tool.name;
+            modalLogo.src = `https://www.google.com/s2/favicons?sz=64&domain_url=${tool.url}`;
+            modalLogo.onerror = () => { modalLogo.style.display = 'none'; };
+            modalLogo.onload = () => { modalLogo.style.display = 'inline-block'; };
+            modalLogo.alt = `${tool.name} Logo`;
+            modalDescription.textContent = tool.description;
+            modalLink.href = tool.url;
+            toolDetailModal.style.display = 'flex';
+        }
+
+        function openCategoryDetailModal(categoryName) {
+            categoryDetailTitle.textContent = categoryName;
+            categoryDetailList.innerHTML = '';
+            const tools = aiToolsData[categoryName];
+            if (tools) {
+                tools.forEach(tool => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <div class="site-info">
+                            <img src="https://www.google.com/s2/favicons?sz=32&domain_url=${tool.url}" alt="${tool.name} favicon" class="site-favicon">
+                            <div class="text-content">
+                                <strong>${tool.name}</strong>
+                                <p>${tool.description}</p>
+                            </div>
+                        </div>
+                        <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="go-to-site-btn">사이트 이동</a>
+                    `;
+                    categoryDetailList.appendChild(li);
+                });
+            }
+            categoryDetailModal.style.display = 'flex';
+        }
+
+        function loadAllData() {
+            mainContainer.innerHTML = '';
+            for (const categoryName in aiToolsData) {
+                if (aiToolsData.hasOwnProperty(categoryName)) {
+                    const tools = aiToolsData[categoryName];
+                    const card = document.createElement('section');
+                    card.className = 'category-card';
+                    
+                    const header = document.createElement('header');
+                    header.className = 'category-card-header';
+                    header.dataset.categoryName = categoryName;
+                    header.innerHTML = `<h2>${categoryName}</h2>`;
+                    
+                    const rankedList = document.createElement('ol');
+                    rankedList.className = 'ranked-list';
+
+                    tools.slice(0, 5).forEach((tool, index) => {
+                        rankedList.appendChild(createToolListItem(tool, categoryName, index + 1));
+                    });
+
+                    card.appendChild(header);
+                    card.appendChild(rankedList);
+
+                    if (tools.length > 5) {
+                        rankedList.classList.add('collapsed');
+                        const footer = document.createElement('div');
+                        footer.className = 'card-footer';
+                        const viewAllCategoryBtn = document.createElement('button');
+                        viewAllCategoryBtn.className = 'view-all-btn';
+                        viewAllCategoryBtn.textContent = '사이트 더보기';
+                        viewAllCategoryBtn.dataset.categoryName = categoryName;
+                        footer.appendChild(viewAllCategoryBtn);
+                        card.appendChild(footer);
+                    }
+                    
+                    mainContainer.appendChild(card);
+                }
+            }
+        }
+
+        document.querySelector('.ai-collection-container').addEventListener('click', function(event) {
+            const target = event.target;
+            
+            const toolLink = target.closest('.tool-name-link');
+            if (toolLink) {
+                event.preventDefault(); 
+                const toolName = toolLink.dataset.toolName;
+                const categoryName = toolLink.dataset.categoryName;
+                const tool = findTool(categoryName, toolName);
+                if (tool) {
+                    openToolDetailModal(tool);
+                }
+                return;
+            }
+
+            const categoryHeader = target.closest('.category-card header');
+            if (categoryHeader && !target.closest('.view-all-btn')) { // Prevent double-triggering if view-all-btn is inside header
+                const categoryName = categoryHeader.dataset.categoryName;
+                console.log('Category header clicked:', categoryName); // Debug log
+                openCategoryDetailModal(categoryName);
+                return;
+            }
+
+            const expandBtn = target.closest('.expand-btn');
+            if (expandBtn) {
+                const card = expandBtn.closest('.category-card');
+                const list = card.querySelector('.ranked-list');
+                list.classList.remove('collapsed');
+                expandBtn.parentElement.remove();
+                return;
+            }
+
+            const viewAllBtn = target.closest('.view-all-btn');
+            if (viewAllBtn) {
+                const categoryName = viewAllBtn.dataset.categoryName;
+                openCategoryDetailModal(categoryName);
+                return;
+            }
+
+            if (target.classList.contains('close-button')) {
+                const modalId = target.dataset.modalId;
+                document.getElementById(modalId).style.display = 'none';
+                return;
+            }
+
+            if (target.classList.contains('modal-container')) {
+                target.style.display = 'none';
+                return;
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                toolDetailModal.style.display = 'none';
+                categoryDetailModal.style.display = 'none';
+            }
+        });
+
+        loadAllData();
+    }
+
+    initialize(aiSitesData);
+});
+</script>
+</body>
+</html>
