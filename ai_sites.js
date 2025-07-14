@@ -16,19 +16,24 @@ const aiSitesData = {
             "description": "방대한 양의 문서를 한 번에 처리하고, 자연스러운 글쓰기와 깊이 있는 분석에 강점을 가집니다."
         },
         {
+            "name": "뤼튼 (Wrtn)",
+            "url": "https://wrtn.ai/",
+            "description": "한국어에 가장 특화된 AI 글쓰기 어시스턴트로, 블로그, 보고서 등 다양한 템플릿을 제공합니다."
+        },
+        {
             "name": "Perplexity AI",
             "url": "https://www.perplexity.ai/",
             "description": "정보의 출처를 함께 제시하며, 대화형으로 정확하고 신뢰도 높은 답변을 찾아주는 AI 검색 엔진입니다."
         },
         {
-            "name": "Poe by Quora",
-            "url": "https://poe.com/",
-            "description": "ChatGPT, Claude 등 다양한 AI 봇을 한 곳에서 사용하고, 나만의 봇을 만들어 공유하는 플랫폼입니다."
-        },
-        {
             "name": "You.com",
             "url": "https://you.com/",
             "description": "검색 결과를 채팅, 이미지, 코드 등 다양한 형태로 제공하는 대화형 검색 엔진입니다."
+        },
+        {
+            "name": "Poe by Quora",
+            "url": "https://poe.com/",
+            "description": "ChatGPT, Claude 등 다양한 AI 봇을 한 곳에서 사용하고, 나만의 봇을 만들어 공유하는 플랫폼입니다."
         },
         {
             "name": "Phind",
@@ -59,14 +64,14 @@ const aiSitesData = {
             "name": "Monica",
             "url": "https://monica.im/",
             "description": "최첨단 AI 모델을 탑재하여 채팅, 검색, 글쓰기, 번역 등 다양한 작업을 하나의 브라우저 확장 프로그램으로 해결해주는 올인원 AI 비서입니다."
+        },
+        {
+            "name": "Kimi K2",
+            "url": "https://kimik2.ai/",
+            "description": "중국 문샷 AI가 개발한 오픈소스 '에이전트 AI'로, 단순 대화를 넘어 스스로 도구를 사용해 복잡한 작업을 수행하는 차세대 인공지능 모델입니다."
         }
     ],
     "✍️ 글쓰기, 요약, 번역": [
-        {
-            "name": "뤼튼 (Wrtn)",
-            "url": "https://wrtn.ai/",
-            "description": "한국어에 가장 특화된 AI 글쓰기 어시스턴트로, 블로그, 보고서 등 다양한 템플릿을 제공합니다."
-        },
         {
             "name": "Jasper",
             "url": "https://www.jasper.ai/",
@@ -295,6 +300,16 @@ const aiSitesData = {
             "name": "PIXLR",
             "url": "https://pixlr.com/kr",
             "description": "소프트웨어 설치 없이 웹에서 바로 사용할 수 있는 AI 기반의 무료 사진 편집 및 디자인 도구입니다."
+        },
+        {
+            "name": "CLAID.AI",
+            "url": "https://claid.ai/",
+            "description": "AI를 이용해 제품 사진의 배경 제거, 해상도 향상, 색상 보정 등 이미지 편집 및 생성을 자동화해주는 서비스입니다."
+        },
+        {
+            "name": "DeWatermark",
+            "url": "https://dewatermark.ai/",
+            "description": "AI를 사용하여 이미지나 동영상에서 워터마크(로고, 텍스트 등)를 자동으로 감지하고 제거해주는 온라인 도구입니다."
         }
     ],
     "🎬 영상 생성 & 편집": [
@@ -466,6 +481,11 @@ const aiSitesData = {
             "name": "Clipto.AI",
             "url": "https://www.clipto.com/",
             "description": "콘텐츠 제작자를 위해 동영상, 팟캐스트 등 다양한 미디어를 자동으로 관리하고 검색할 수 있게 도와주는 비공개 AI 비서 서비스입니다."
+        },
+        {
+            "name": "AI Music",
+            "url": "https://aisongcreator.ai/",
+            "description": "AI 기술을 활용하여 텍스트(가사)만으로 자신만의 독창적인 노래를 만들어주는 서비스입니다."
         }
     ],
     "📄 디자인, 문서, PPT": [
@@ -795,6 +815,33 @@ const aiSitesData = {
             "name": "ReRender",
             "url": "https://ko.rerenderai.com/",
             "description": "인테리어 디자이너, 건축가, 3D 아티스트를 위해 스케치나 3D 모델을 몇 초 만에 사실적인 고품질 렌더링 이미지로 변환해주는 AI 기반 건축 시각화 도구입니다."
+        },
+        {
+            "name": "Planner 5d",
+            "url": "https://planner5d.com/",
+            "description": "전문가 수준의 2D 및 3D 평면도와 인테리어 디자인을 누구나 쉽게 만들 수 있는 AI 기반의 온라인 홈 디자인 도구입니다."
+        }
+    ],
+    "👚 패션": [
+        {
+            "name": "caspa AI",
+            "url": "https://www.caspa.ai/",
+            "description": "이커머스(전자상거래) 제품 사진에 사실적인 AI 가상 인간 모델을 합성하여 전문적인 라이프스타일 이미지를 생성해주는 AI 서비스입니다."
+        },
+        {
+            "name": "Flair.ai",
+            "url": "https://flair.ai/",
+            "description": "제품 이미지를 업로드하면 AI가 배경, 소품, 모델 등을 활용하여 전문가 수준의 홍보용 콘텐츠로 자동 디자인해주는 서비스입니다."
+        },
+        {
+            "name": "WeShop AI",
+            "url": "https://www.weshop.ai/",
+            "description": "이커머스(전자상거래)를 위한 AI 기반의 올인원(All-in-one) 크리에이티브 스튜디오로, 가상 모델과 제품 이미지를 즉시 생성하고 편집해주는 서비스입니다."
+        },
+        {
+            "name": "Pebblely",
+            "url": "https://pebblely.com/",
+            "description": "단순한 제품 이미지를 AI를 이용해 즉시 아름다운 마케팅용 이미지로 만들어주는 서비스입니다."
         }
     ]
 };
